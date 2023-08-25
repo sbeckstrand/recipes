@@ -1,0 +1,17 @@
+{% extends "web/base.html" %}
+
+{% block content %}
+{% if recipe %}
+Editing Recipe: {{ recipe.id }}
+{% else %}
+<form action="{% url 'recipes' %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>New Recipe</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <input type="text" name="title" value="">
+    <input type="submit" value="Create">
+</fieldset>
+</form>
+{% endif %}
+{% endblock content %}

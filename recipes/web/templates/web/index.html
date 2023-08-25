@@ -1,0 +1,17 @@
+{% extends "web/base.html" %}
+
+{% block content %}
+{% if latest_recipes %}
+    <h1 class="text-3xl font-bold underline">
+        Hello world!
+    </h1>
+    <ul>
+        {% for recipe in latest_recipes %}
+            <li><a href="{% url 'recipe' recipe.id %}">{{ recipe.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p> No Recipes Available </p>
+{% endif %}
+
+{% endblock content %}
