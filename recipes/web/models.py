@@ -7,5 +7,8 @@ class Recipe(models.Model):
     description = models.TextField()
     created_date = models.DateTimeField("Date Created")
     ingredients = models.TextField()
+    steps = models.TextField()
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     updated_date = models.DateTimeField("Date Last Updated")
+    tags = models.CharField(max_length=1000)
+

@@ -5,7 +5,6 @@ from .models import Recipe
 # Create your views here.
 def index(request):
     latest_recipes = Recipe.objects.order_by("-created_date")[:5]
-    print(latest_recipes)
     context = {
         "latest_recipes": latest_recipes
     }
@@ -17,13 +16,14 @@ def recipe(request, recipe_id):
 
 def recipes(request):
     if request.method == "POST":
-        try:
-            print(request.POST["title"])
-            return redirect("index")
-        except:
-            return redirect("index")
-    if request.method == "GET":
-        return redirect("index")
+        # TODO: Handle taking post content and attempting to create recipe
+        pass
+    elif request.method == "GET":
+        latest_recipes = Recipe.objects.order_by("-created_date")[:5]
+        context = {
+            "latest_recipes": latest_recipes
+        }
+        return render(request, "web/recipes.html", context)
 
 def recipe_form(request, recipe_id=None):
     if recipe_id:
@@ -31,3 +31,6 @@ def recipe_form(request, recipe_id=None):
         return render(request, "web/recipe_form.html", { "recipe": recipe })
     
     return render(request, "web/recipe_form.html")
+
+def profile(request):
+    return render(request, "web/profile.html")
