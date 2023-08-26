@@ -16,8 +16,9 @@ def recipe(request, recipe_id):
 
 def recipes(request):
     if request.method == "POST":
-        # TODO: Handle taking post content and attempting to create recipe
-        pass
+        if request.POST:
+            print(request.POST)
+        return render(request, "web/index.html")
     elif request.method == "GET":
         latest_recipes = Recipe.objects.order_by("-created_date")[:5]
         context = {

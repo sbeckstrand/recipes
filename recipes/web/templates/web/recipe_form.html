@@ -4,14 +4,30 @@
 {% if recipe %}
 Editing Recipe: {{ recipe.id }}
 {% else %}
-<form action="{% url 'recipes' %}" method="post">
-{% csrf_token %}
-<fieldset>
-    <legend><h1>New Recipe</h1></legend>
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <input type="text" name="title" value="">
-    <input type="submit" value="Create">
-</fieldset>
-</form>
+
+<div class="flex flex-wrap w-full max-w items-center justify-center"">
+    <form class="w-1/2 max-w" action="{% url 'recipes' %}" method="post">
+        {% csrf_token %}
+        <div class="w-full p-3 content-center">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                Title
+            </label>
+            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-purple-200 rounded py-3 px-4 leading-tight focus:border-purple-500 focus:outline-none focus:bg-white" type="text" name="title" value="">
+        </div>
+        <div class="w-full p-3 ">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+            Description
+            </label>
+            <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-purple-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" name="description" value=""></textarea>
+        </div>
+        <div class="w-full p-3 ">
+            <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                Create Recipe
+            </button>
+        </div>
+        
+    </form>
+</div>
+
 {% endif %}
 {% endblock content %}
